@@ -1,0 +1,236 @@
+export type DealStage = "Sourcing" | "LOI" | "Diligence" | "Closed";
+export type AssetClass = "Office" | "Retail" | "Industrial" | "Mixed-use";
+
+export type Deal = {
+  id: string;
+  tenant: string;
+  asset: string;
+  city: string;
+  assetClass: AssetClass;
+  sqft: number;
+  rentPerSf: number;
+  term: string;
+  noiDelta: number; // % change vs underwriting
+  owner: { name: string; initials: string; tone: string };
+  stage: DealStage;
+  lastActivity: string;
+};
+
+const owners = {
+  AS: { name: "Aryan Singh", initials: "AS", tone: "from-violet-300 to-violet-500" },
+  MR: { name: "Maya Rivera", initials: "MR", tone: "from-emerald-300 to-emerald-500" },
+  DT: { name: "Daniel Tran", initials: "DT", tone: "from-amber-300 to-amber-500" },
+  KP: { name: "Kavya Patel", initials: "KP", tone: "from-rose-300 to-rose-500" },
+  JL: { name: "Jordan Lin", initials: "JL", tone: "from-sky-300 to-sky-500" },
+  EO: { name: "Elena Okafor", initials: "EO", tone: "from-fuchsia-300 to-fuchsia-500" },
+} as const;
+
+export const deals: Deal[] = [
+  // Sourcing
+  {
+    id: "D-001",
+    tenant: "Sequoia Capital Office",
+    asset: "2800 Sand Hill Rd",
+    city: "Menlo Park, CA",
+    assetClass: "Office",
+    sqft: 41200,
+    rentPerSf: 132.5,
+    term: "10 yr",
+    noiDelta: 6.2,
+    owner: owners.AS,
+    stage: "Sourcing",
+    lastActivity: "2h ago",
+  },
+  {
+    id: "D-002",
+    tenant: "Patagonia Flagship",
+    asset: "770 N Point St",
+    city: "San Francisco, CA",
+    assetClass: "Retail",
+    sqft: 14800,
+    rentPerSf: 84.0,
+    term: "7 yr",
+    noiDelta: 3.4,
+    owner: owners.MR,
+    stage: "Sourcing",
+    lastActivity: "yesterday",
+  },
+  {
+    id: "D-003",
+    tenant: "Rivian Service Hub",
+    asset: "1450 Industrial Way",
+    city: "Hayward, CA",
+    assetClass: "Industrial",
+    sqft: 88500,
+    rentPerSf: 22.4,
+    term: "10 yr",
+    noiDelta: 8.9,
+    owner: owners.DT,
+    stage: "Sourcing",
+    lastActivity: "3 days ago",
+  },
+  {
+    id: "D-004",
+    tenant: "Sweetgreen Mission",
+    asset: "2727 Mariposa St",
+    city: "San Francisco, CA",
+    assetClass: "Retail",
+    sqft: 3450,
+    rentPerSf: 110.0,
+    term: "10 yr",
+    noiDelta: 1.1,
+    owner: owners.KP,
+    stage: "Sourcing",
+    lastActivity: "5h ago",
+  },
+  // LOI
+  {
+    id: "D-101",
+    tenant: "Allbirds HQ",
+    asset: "730 Montgomery St",
+    city: "San Francisco, CA",
+    assetClass: "Office",
+    sqft: 22600,
+    rentPerSf: 98.0,
+    term: "8 yr",
+    noiDelta: 4.7,
+    owner: owners.JL,
+    stage: "LOI",
+    lastActivity: "Updated today",
+  },
+  {
+    id: "D-102",
+    tenant: "Trader Joe's #142",
+    asset: "1750 Fillmore St",
+    city: "San Francisco, CA",
+    assetClass: "Retail",
+    sqft: 13250,
+    rentPerSf: 62.5,
+    term: "15 yr",
+    noiDelta: 2.3,
+    owner: owners.EO,
+    stage: "LOI",
+    lastActivity: "Counter sent",
+  },
+  {
+    id: "D-103",
+    tenant: "Stripe Bay Bridge Annex",
+    asset: "550 Townsend St",
+    city: "San Francisco, CA",
+    assetClass: "Office",
+    sqft: 31000,
+    rentPerSf: 118.0,
+    term: "12 yr",
+    noiDelta: 5.5,
+    owner: owners.AS,
+    stage: "LOI",
+    lastActivity: "Awaiting comments",
+  },
+  {
+    id: "D-104",
+    tenant: "Whole Foods 365",
+    asset: "1101 4th St",
+    city: "San Rafael, CA",
+    assetClass: "Retail",
+    sqft: 28400,
+    rentPerSf: 48.0,
+    term: "20 yr",
+    noiDelta: 0.8,
+    owner: owners.MR,
+    stage: "LOI",
+    lastActivity: "1 week ago",
+  },
+  // Diligence
+  {
+    id: "D-201",
+    tenant: "WeWork 599 Market",
+    asset: "599 Market St",
+    city: "San Francisco, CA",
+    assetClass: "Office",
+    sqft: 64800,
+    rentPerSf: 71.0,
+    term: "12 yr",
+    noiDelta: -1.4,
+    owner: owners.DT,
+    stage: "Diligence",
+    lastActivity: "ESA pending",
+  },
+  {
+    id: "D-202",
+    tenant: "Tesla Service Annex",
+    asset: "455 Forbes Blvd",
+    city: "South San Francisco, CA",
+    assetClass: "Industrial",
+    sqft: 102400,
+    rentPerSf: 19.8,
+    term: "10 yr",
+    noiDelta: 7.1,
+    owner: owners.KP,
+    stage: "Diligence",
+    lastActivity: "Title report in",
+  },
+  {
+    id: "D-203",
+    tenant: "Ritual Café",
+    asset: "1026 Valencia St",
+    city: "San Francisco, CA",
+    assetClass: "Retail",
+    sqft: 1850,
+    rentPerSf: 96.0,
+    term: "5 yr",
+    noiDelta: 1.9,
+    owner: owners.JL,
+    stage: "Diligence",
+    lastActivity: "Estoppel signed",
+  },
+  // Closed
+  {
+    id: "D-301",
+    tenant: "Pinterest South Park",
+    asset: "651 Brannan St",
+    city: "San Francisco, CA",
+    assetClass: "Office",
+    sqft: 49500,
+    rentPerSf: 102.0,
+    term: "10 yr",
+    noiDelta: 4.2,
+    owner: owners.EO,
+    stage: "Closed",
+    lastActivity: "Closed Mar 28",
+  },
+  {
+    id: "D-302",
+    tenant: "Erewhon Castro",
+    asset: "2598 Market St",
+    city: "San Francisco, CA",
+    assetClass: "Retail",
+    sqft: 11200,
+    rentPerSf: 88.0,
+    term: "12 yr",
+    noiDelta: 5.0,
+    owner: owners.AS,
+    stage: "Closed",
+    lastActivity: "Closed Apr 11",
+  },
+  {
+    id: "D-303",
+    tenant: "Anduril Mission Bay",
+    asset: "1700 Owens St",
+    city: "San Francisco, CA",
+    assetClass: "Mixed-use",
+    sqft: 73900,
+    rentPerSf: 94.5,
+    term: "11 yr",
+    noiDelta: 6.6,
+    owner: owners.MR,
+    stage: "Closed",
+    lastActivity: "Closed Apr 22",
+  },
+];
+
+export const stageOrder: DealStage[] = ["Sourcing", "LOI", "Diligence", "Closed"];
+
+export const totalDealValue = deals.reduce(
+  (sum, d) => sum + d.sqft * d.rentPerSf * parseInt(d.term),
+  0,
+);
