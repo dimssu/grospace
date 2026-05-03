@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Grospace
 
-## Getting Started
+**AI lease management for commercial real estate.**
 
-First, run the development server:
+Extract clauses from leases, run a deal pipeline, and chat with your portfolio — in one workspace.
+
+![Next.js](https://img.shields.io/badge/Next.js-15-000000?logo=nextdotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-19-149eca?logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38bdf8?logo=tailwindcss&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer%20Motion-12-ff0080?logo=framer&logoColor=white)
+
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# open http://localhost:3002
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Production build:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Routes
 
-## Learn More
+| Path         | Description                                                                   |
+| ------------ | ----------------------------------------------------------------------------- |
+| `/`          | Lease extraction — split-pane document viewer with click-to-source highlight. |
+| `/pipeline`  | Deal Kanban — sourcing → LOI → diligence → closed, with NOI deltas.           |
+| `/portfolio` | Portfolio chat — summary, top tenants, AI replies with inline charts.         |
 
-To learn more about Next.js, take a look at the following resources:
+## Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Next.js 15** App Router, server components for the shell, client components for interactivity
+- **Tailwind CSS v4** with token-based design system (see `src/app/globals.css`)
+- **Framer Motion** for stagger-mount and hover-lift animations
+- **lucide-react** icon set
+- **next/font** loading Inter (sans), Space Grotesk (display), JetBrains Mono (mono)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Screenshots
 
-## Deploy on Vercel
+![Hero](./public/screenshots/hero.png)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![Dashboard](./public/screenshots/dashboard.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+![Detail](./public/screenshots/detail.png)
+
+## Project layout
+
+```
+src/
+  app/
+    page.tsx           Lease extraction
+    pipeline/page.tsx  Deal Kanban
+    portfolio/page.tsx Portfolio chat
+    layout.tsx
+    globals.css
+  components/
+    Shell.tsx          Sidebar + topbar + main
+  data/
+    leases.ts
+    leaseDocument.ts
+    extracted.ts
+    deals.ts
+    portfolio.ts
+```
+
+## License
+
+Internal MVP — © Grospace.
